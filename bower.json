@@ -1,0 +1,19 @@
+{
+  "name": "frontstatvey",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/Splitbreed/frontstatveys",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-flash-alert": "^2.4.0",
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.2"
+  }
+}

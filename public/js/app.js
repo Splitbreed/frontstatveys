@@ -1,5 +1,5 @@
 (function(){
-  angular.module('Statvey')
+  angular.module('Statvey', ['ngFlash', 'ui.router'])
     .controller('MainCtrl', MainCtrl);
 
   function MainCtrl($http, $state, Flash){

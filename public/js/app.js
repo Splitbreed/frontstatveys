@@ -4,7 +4,7 @@
 
   function MainCtrl($http, $state, Flash){
     var self = this;
-    var rootUrl = 'localhost:3000'
+    var rootUrl = 'localhost:3000';
 
     this.signup = function(user){
       self.signed = user;

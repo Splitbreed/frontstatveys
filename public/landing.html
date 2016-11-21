@@ -1,0 +1,13 @@
+  <h3>THIS IS THE LANDING PAGE</h3>
+  <h5>New Business</h5>
+<form ng-submit="main.makeBusiness(main.busInfo, main.user.id)" method="post">
+  <label for="">Name: </label><input type="text" name="name" ng-model="main.busInfo.name"><br>
+  <label for="">Service Type: </label><select name="service" ng-model="main.busInfo.service">
+    <option value="food">Food</option>
+    <option value="entertainment">Entertainment</option>
+    <option value="retail">Retail</option>
+    <option value="healthcare">Healthcare</option>
+    <option value="misc">Miscellaneous</option>
+    <option value="other">Other</option>
+  </select>
+</form>

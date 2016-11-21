@@ -22,5 +22,10 @@
         url: '/survey',
         templateUrl: 'survey.html'
       })
+      
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
   }
 })()

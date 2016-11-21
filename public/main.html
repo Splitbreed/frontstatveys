@@ -1,0 +1,20 @@
+<h3>Login</h3>
+<hr>
+<form class="" ng-submit="main.login(main.log)" method="post">
+  <input type="text" name="userlog" placeholder="Username" ng-model="main.log.username">
+  <input type="password" name="userpass" placeholder="Password" ng-model="main.log.password">
+  <input type="submit" name="Submit" value="Submit">
+</form>
+<br><br>
+<h3>Register</h3>
+<hr>
+<form class="" ng-submit="main.signup(main.reginfo)" method="post">
+  <label>First Name: </label><input type="text" name="regfirst" placeholder="First" ng-model="main.reginfo.name_first">&nbsp&nbsp
+  <label>Last Name:</label><input type="text" name="reglast" placeholder="Last" ng-model="main.reginfo.name_last">
+  <br>
+  <label>Username: </label><input type="text" name="reguser" placeholder="Username" ng-model="main.reginfo.username">&nbsp&nbsp
+  &nbsp&nbsp<label>Password: </label><input type="password" name="regpass" placeholder="Password" ng-model="main.reginfo.password">&nbsp&nbsp <br>
+  <label>Email Address: </label><input type="email_address" name="email_address" placeholder="Email Address" ng-model="main.reginfo.email_address">
+  <br>
+  <input type="submit" name="Submit" value="Submit">
+</form>

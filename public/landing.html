@@ -1,24 +1,32 @@
-Hello, {{main.user.username}}
+Hello, {{main.user.name_first}}
 
   <h4>New Business</h4>
 <form ng-submit="main.makeBusiness(main.busInfo, main.user.id)" method="post">
-  <label for="">Name: </label><input type="text" name="name" ng-model="main.busInfo.name"><br>
-  <label for="">Service Type: </label><select name="service" ng-model="main.busInfo.service">
-    <option value="Food">Food</option>
-    <option value="Entertainment">Entertainment</option>
-    <option value="Retail">Retail</option>
-    <option value="Healthcare">Healthcare</option>
-    <option value="Miscellaneous">Miscellaneous</option>
-    <option value="Other">Other</option>
-  </select>
-  <button type="submit" name="Submit">Create</button>
+  <div class="input-field">
+  <label for="">Name: </label><input type="text" name="name" ng-model="main.busInfo.name">
+</div>
+<div class="input-field col s12">
+    <label>Service Type: </label><br>
+    <input type="radio" name="group1" value="Food" id="lg1" ng-model="main.busInfo.service"><label for="lg1">Food</label>
+    <input type="radio" name="group1" value="Entertainment" id="lg2" ng-model="main.busInfo.service"><label for="lg2">Entertainment</label>
+    <input type="radio" name="group1" value="Retail" id="lg3" ng-model="main.busInfo.service"><label for="lg3">Retail</label>
+    <input type="radio" name="group1" value="Healthcare" id="lg4" ng-model="main.busInfo.service"><label for="lg4">Healthcare</label>
+    <input type="radio" name="group1" value="Miscellaneous" id="lg5" ng-model="main.busInfo.service"><label for="lg5">Miscellaneous</label>
+    <input type="radio" name="group1" value="Other" id="lg6" ng-model="main.busInfo.service"><label for="lg6">Other</label><br><br>
+
+</div class="input-field col s12">
+  <button class="indigo accent-2 btn waves-effect waves-light" type="submit" name="Submit">Create</button>
 </form>
 
 <div ng-if="main.currentUserBus">
-  <div ng-repeat="curr in main.currentUserBus track by index">
-    <h5>{{curr.name}}</h5>
+  <div ng-repeat="curr in main.currentUserBus track by $index">
+    <div class="card col s12 m6 indigo darken-2">
+    <span class="card-title">{{curr.name}}</span>
+    <div class="card-content white-text">
     Service: <span>{{curr.service}}</span><br>
     Overall Score: {{curr.overall_score}}<br>
-    <button type="button" ng-click="main.delete(curr.id, main.user.id)" name="Delete">Delete</button>
+  </div>
+  <div class="card-action">
+    <button class="indigo accent-2 btn waves-effect waves-light" type="button" ng-click="main.delete(curr.id, main.user.id)" name="Delete">Delete</button>
   </div>
 </div>

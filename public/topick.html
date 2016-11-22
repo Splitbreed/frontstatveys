@@ -1,5 +1,9 @@
-<div ng-repeat="each in main.allBus track by $index">
-  <li><h4>{{each.name}}</h4>
-  {{each.service}}
-  <button type="surveytake" name="surveytake" ng-click="main.takeSurvey(each.id)">Take Survey</button></li>
-</div>
+<ul>
+  <div class="col s12 m6 card indigo darken-2" ng-repeat="each in main.allBus track by $index">
+  <div class="card-content white-text">
+    <li><span class="card-title">{{each.name}}</span>
+    {{each.service}}
+    <span class="card-action"><a href="#" ng-click="main.takeSurvey(each.id)">Take Survey</a></span></li>
+  </div>
+  </div>
+</ul>

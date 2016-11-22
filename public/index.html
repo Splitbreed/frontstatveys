@@ -6,18 +6,32 @@
     <script src="/scripts/angular/angular.js"></script>
     <script src="/scripts/angular-flash-alert/dist/angular-flash.js"></script>
     <script src="/scripts/angular-ui-router/release/angular-ui-router.js"></script>
+    <link rel="stylesheet" href="/scripts/materialize/dist/css/materialize.min.css">
     <link rel="stylesheet" href="/scripts/angular-flash-alert/dist/angular-flash.css" media="screen" title="no title">
+    <script src="/scripts/jQuery/dist/jquery.min.js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/router.js"></script>
+    <script src="/scripts/materialize/dist/js/materialize.min.js"></script>
 
   </head>
-  <body ng-controller="MainCtrl as main">
+  <body class="indigo" ng-controller="MainCtrl as main">
     <nav>
-      <a href="#" ng-if="main.logged" ng-click="main.logout()">Logout</a>
+      <div class="nav-wrapper indigo darken-4">
+        <a ui="#!" class="brand-logo center">Statveys</a>
+        <ul>
+          <li><a class="active" ng-click="main.logout()" href="#">Logout</a></li>
+          <li><a ui-sref="opening">Home</a>
+        </ul>
+      </div>
     </nav>
     <main ui-view>
 
     </main>
   </body>
-  <footer id="footnoteid" style="position:fixed;width:100vw;"><flash-message duration = "7000" show-close = 'true'></flash-message></footer>
+  <footer id="footnoteid" style="position:fixed;width:100vw;bottom:0;z-index:2;"><flash-message duration = "7000" show-close = 'true'></flash-message></footer>
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+  </script>
 </html>

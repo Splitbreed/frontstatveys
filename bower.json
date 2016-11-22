@@ -15,6 +15,7 @@
     "angular-flash-alert": "^2.4.0",
     "angular": "^1.5.8",
     "angular-ui-router": "^0.3.2",
-    "materialize": "^0.97.8"
+    "materialize": "^0.97.8",
+    "jQuery": "^3.1.1"
   }
 }

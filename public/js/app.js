@@ -4,7 +4,7 @@
 
   function MainCtrl($http, $state, Flash){
     var self = this;
-    var rootUrl = 'http://localhost:3000';
+    var rootUrl = 'http://statveysback.herokuapp.com' || 'http://localhost:3000';
     this.allUserBus = null;
 
     // if (localStorage.token){

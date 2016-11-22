@@ -1,0 +1,35 @@
+Please answer the below questions to the best of your ability. All questions must be answered. A five is a perfect score, a one is the lowest.
+
+This survey is for {{main.beingTaken.name}}
+
+<form ng-submit="main.finishSurvey(main.beingTaken.id, main.surv)">
+  What do you rate the product or service you received? (price, availability, etc.)<br>
+  1 <input type="radio" name="product" value="1" ng-model="main.surv.prod">
+  <input type="radio" name="product" value="2" ng-model="main.surv.prod">
+  <input type="radio" name="product" value="3" ng-model="main.surv.prod">
+  <input type="radio" name="product" value="4" ng-model="main.surv.prod">
+  <input type="radio" name="product" value="5" ng-model="main.surv.prod"> 5
+  <br>
+  What do you rate the interactions with the employees?<br>
+  1 <input type="radio" name="employee" value="1" ng-model="main.surv.emp">
+  <input type="radio" name="employee" value="2" ng-model="main.surv.emp">
+  <input type="radio" name="employee" value="3" ng-model="main.surv.emp">
+  <input type="radio" name="employee" value="4" ng-model="main.surv.emp">
+  <input type="radio" name="employee" value="5" ng-model="main.surv.emp"> 5
+  <br>
+  What do you rate the physical business? (cleanliness, presentability, etc.)<br>
+  1 <input type="radio" name="store" value="1" ng-model="main.surv.store">
+  <input type="radio" name="store" value="2" ng-model="main.surv.store">
+  <input type="radio" name="store" value="3" ng-model="main.surv.store">
+  <input type="radio" name="store" value="4" ng-model="main.surv.store">
+  <input type="radio" name="store" value="5" ng-model="main.surv.store"> 5
+  <br>
+  How satisfied are you overall with your experience?<br>
+  1 <input type="radio" name="overall" value="1" ng-model="main.surv.over">
+  <input type="radio" name="overall" value="2" ng-model="main.surv.over">
+  <input type="radio" name="overall" value="3" ng-model="main.surv.over">
+  <input type="radio" name="overall" value="4" ng-model="main.surv.over">
+  <input type="radio" name="overall" value="5" ng-model="main.surv.over"> 5<br>
+
+  <button type="submit" name="submit">Submit Survey</button>
+</form>

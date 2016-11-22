@@ -1,13 +1,24 @@
-  <h3>THIS IS THE LANDING PAGE</h3>
-  <h5>New Business</h5>
+Hello, {{main.user.username}}
+
+  <h4>New Business</h4>
 <form ng-submit="main.makeBusiness(main.busInfo, main.user.id)" method="post">
   <label for="">Name: </label><input type="text" name="name" ng-model="main.busInfo.name"><br>
   <label for="">Service Type: </label><select name="service" ng-model="main.busInfo.service">
-    <option value="food">Food</option>
-    <option value="entertainment">Entertainment</option>
-    <option value="retail">Retail</option>
-    <option value="healthcare">Healthcare</option>
-    <option value="misc">Miscellaneous</option>
-    <option value="other">Other</option>
+    <option value="Food">Food</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="Retail">Retail</option>
+    <option value="Healthcare">Healthcare</option>
+    <option value="Miscellaneous">Miscellaneous</option>
+    <option value="Other">Other</option>
   </select>
+  <button type="submit" name="Submit">Create</button>
 </form>
+
+<div ng-if="main.currentUserBus">
+  <div ng-repeat="curr in main.currentUserBus track by index">
+    <h5>{{curr.name}}</h5>
+    Service: <span>{{curr.service}}</span><br>
+    Overall Score: {{curr.overall_score}}<br>
+    <button type="button" ng-click="main.delete(curr.id, main.user.id)" name="Delete">Delete</button>
+  </div>
+</div>

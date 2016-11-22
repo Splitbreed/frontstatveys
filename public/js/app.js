@@ -5,10 +5,18 @@
   function MainCtrl($http, $state, Flash){
     var self = this;
     var rootUrl = 'http://localhost:3000';
+    this.allUserBus = null;
+
+    // if (localStorage.token){
+    //   $http.get(`${rootUrl}/users/dec`)
+    //   .then(function(response){
+    //     self.user = response.data.message;
+    //   })
+    // }
 
     this.signup = function(user){
       console.log(user);
-      self.signed = {username: user.password, password: user.username};
+      self.signed = {username: user.username, password: user.password};
       return $http({
         url: `${rootUrl}/users`,
         method: 'POST',
@@ -41,10 +49,36 @@
           passAlert('<strong>Logged in!</strong> Hello ' + response.data.user.username);
           localStorage.setItem('token', JSON.stringify(response.data.token))
           self.user = response.data.user;
+          self.getIndivid();
           $state.go('landing', {url: '/landing', user: response.data.user});
         }
       })
     } //end login
+
+    this.logout = function(){
+      localStorage.removeItem('token');
+      self.user = null;
+      warnAlert('You have been logged out.')
+      $state.go('main', {url: '/main'});
+    }
+
+    this.getIndivid = function(){
+      $http.get(`${rootUrl}/users/${self.user.id}/businesses`)
+      .then(function(response){
+        self.currentUserBus = response.data.businesses;
+        console.log(self.currentUserBus);
+      });
+    }
+
+    this.delete = function(id, uid){
+      return $http({
+        url: `${rootUrl}/users/${uid}/businesses/${id}`,
+        method: 'DELETE'
+      })
+      .then(function(response){
+        self.getIndivid();
+      })
+    }
 
     this.getBusinesses = function(id){
       return $http({
@@ -56,13 +90,50 @@
       })
     }
 
+    $http.get(`${rootUrl}/businesses/all`)
+    .then(function(response){
+      self.allBus = response.data.all
+    })
+
+    this.singleBusiness = function(id){
+      return $http({
+        url: `${rootUrl}/businesses/${id}`,
+        method: 'GET'
+      })
+    }
+
     this.makeBusiness = function(busInfo, id){
+      console.log(busInfo);
       return $http({
         url: `${rootUrl}/users/${id}/businesses`,
-        method: 'POST'
+        method: 'POST',
+        data: {business: busInfo}
       })
       .then(function(response){
+        self.getIndivid();
         console.log(response);
+      })
+    }
+
+    this.finishSurvey = function(bus, score){
+      console.log(score);
+      console.log(bus)
+      total = ((Number(score.prod) + Number(score.emp) + Number(score.store) + Number(score.over))/4);
+      complete = {overall_score: total}
+      return $http({
+        url: `${rootUrl}/businesses/${bus}`,
+        method: 'PATCH',
+        data: {business: complete}
+      })
+    }
+
+    this.takeSurvey = function(id){
+      console.log(id);
+      self.singleBusiness(id)
+      .then(function(response){
+        console.log(response);
+        self.beingTaken = response.data.business
+        $state.go('survey', {url: '/survey'});
       })
     }
 

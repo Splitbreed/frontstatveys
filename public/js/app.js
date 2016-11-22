@@ -4,8 +4,10 @@
 
   function MainCtrl($http, $state, Flash){
     var self = this;
-    var rootUrl = 'http://statveysback.herokuapp.com' || 'http://localhost:3000';
+    var rootUrl = 'http://localhost:3000';
     this.allUserBus = null;
+
+    //http://statveysback.herokuapp.com
 
     // if (localStorage.token){
     //   $http.get(`${rootUrl}/users/dec`)
@@ -95,6 +97,13 @@
       self.allBus = response.data.all
     })
 
+    this.getAll = function(){
+      $http.get(`${rootUrl}/businesses/all`)
+      .then(function(response){
+        self.allBus = response.data.all
+      })
+    }
+
     this.singleBusiness = function(id){
       return $http({
         url: `${rootUrl}/businesses/${id}`,
@@ -110,6 +119,7 @@
         data: {business: busInfo}
       })
       .then(function(response){
+        self.getAll();
         self.getIndivid();
         console.log(response);
       })
@@ -119,12 +129,25 @@
       console.log(score);
       console.log(bus)
       total = ((Number(score.prod) + Number(score.emp) + Number(score.store) + Number(score.over))/4);
-      complete = {overall_score: total}
+      complete = {overall_score: total, overall_tracker: []}
       return $http({
         url: `${rootUrl}/businesses/${bus}`,
-        method: 'PATCH',
-        data: {business: complete}
+        method: 'GET'
       })
+      .then(function(response){
+        console.log(response);
+        response.data.business.
+        self.getAll();
+        // $state.go('choose', {url:})
+      })
+      // .then(function(math){
+      //   complete.overall_tracker =
+      //   return $http({
+      //     url: `${rootUrl}/businesses/${bus}`,
+      //     method: 'PATCH',
+      //     data: {business: complete}
+      //   })
+      // })
     }
 
     this.takeSurvey = function(id){
@@ -133,7 +156,7 @@
       .then(function(response){
         console.log(response);
         self.beingTaken = response.data.business
-        $state.go('survey', {url: '/survey'});
+        $state.go('picking', {url: '/choose'});
       })
     }
 
